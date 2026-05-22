@@ -115,6 +115,48 @@ internal class Ejemplos
     //Realizar una llamada a cada método definido en CasoLinq y mostar por consola según corresponda
     public static void EjemploLinq()
     {
+        CasoLinq linq = new CasoLinq();
+        Console.WriteLine("=== Primer libro ===");
+        Console.WriteLine(linq.GetPrimero());
+
+        Console.WriteLine("\n=== Último libro ===");
+        Console.WriteLine(linq.GetUltimo());
+
+        Console.WriteLine("\n=== Total precios ===");
+        Console.WriteLine(linq.GetTotalPrecios());
+
+        Console.WriteLine("\n=== Promedio precios ===");
+        Console.WriteLine(linq.GetPromedioPrecios());
+
+        Console.WriteLine("\n=== Libros con Id mayor a 15 ===");
+        foreach (Libro l in linq.GetListById())
+        {
+            Console.WriteLine(l);
+        }
+
+        Console.WriteLine("\n=== Títulos y precios ===");
+        foreach (string s in linq.GetLibros())
+        {
+            Console.WriteLine(s);
+        }
+
+        Console.WriteLine("\n=== Libro más caro ===");
+        Console.WriteLine(linq.GetMayorPrecio());
+
+        Console.WriteLine("\n=== Libro más barato ===");
+        Console.WriteLine(linq.GetMenorPrecio());
+
+        Console.WriteLine("\n=== Libros sobre el promedio ===");
+        foreach (Libro l in linq.GetMayorPromedio())
+        {
+            Console.WriteLine(l);
+        }
+
+        Console.WriteLine("\n=== Libros ordenados por título descendente ===");
+        foreach (Libro l in linq.GetOrdenadosPorTitulo())
+        {
+            Console.WriteLine(l);
+        }
 
     }
 }

@@ -5,7 +5,10 @@ public class Libro
     public int Id { get; set; }
     public string Titulo { get; set; }
     public decimal Precio { get; set; }
-
+    public override string ToString()
+    {
+        return $"{Id} - {Titulo} - Precio: {Precio}";
+    }
     public Libro(int id, string titulo, decimal precio)
     {
         Id = id;
