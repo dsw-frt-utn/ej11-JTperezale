@@ -1,5 +1,7 @@
 ﻿namespace Dsw2026Ej11.Tests;
 
+using Dsw2026Ej11.Collections;
+using Dsw2026Ej11.Domain;
 
 internal class Ejemplos
 {
@@ -11,6 +13,47 @@ internal class Ejemplos
     //Eliminar el primer elemento de la lista y listar por consola los alumnos
     public static void EjemploList()
     {
+        CasoList lista = new CasoList();
+
+        Alumno a1 = new Alumno(1, "Juan", 8.5);
+        Alumno a2 = new Alumno(2, "Maria", 9.0);
+        Alumno a3 = new Alumno(3, "Pedro", 7.5);
+
+        lista.Agregar(a1);
+        lista.Agregar(a2);
+        lista.Agregar(a3);
+
+        Console.WriteLine("=== Lista de alumnos ===");
+        foreach (Alumno a in lista.ObtenerTodos())
+        {
+            Console.WriteLine(a);
+        }
+
+        Console.WriteLine("\n=== Buscar alumno ===");
+
+        Alumno encontrado = lista.BuscarPorNombre("Juan");
+        if (encontrado != null)
+        {
+            Console.WriteLine(encontrado);
+        }
+        else
+        {
+            Console.WriteLine("No existe");
+        }
+
+        Console.WriteLine("\n=== Eliminar alumno ===");
+        lista.Eliminar(a2);
+        foreach (Alumno a in lista.ObtenerTodos())
+        {
+            Console.WriteLine(a);
+        }
+
+        Console.WriteLine("\n=== Eliminar primer elemento ===");
+        lista.EliminarEnPosicion(0);
+        foreach (Alumno a in lista.ObtenerTodos())
+        {
+            Console.WriteLine(a);
+        }
 
     }
 
@@ -21,12 +64,99 @@ internal class Ejemplos
     //Eliminar un alumno por clave y listar por consola los alumnos
     public static void EjemploDictionary()
     {
+        CasoDictionary diccionario = new CasoDictionary();
+
+        Alumno a1 = new Alumno(1, "Juan", 8.5);
+        Alumno a2 = new Alumno(2, "Maria", 9.0);
+        Alumno a3 = new Alumno(3, "Pedro", 7.5);
+
+        diccionario.Agregar(a1);
+        diccionario.Agregar(a2);
+        diccionario.Agregar(a3);
+
+        Console.WriteLine("=== Lista de alumnos ===");
+        foreach (KeyValuePair<int, Alumno> par in diccionario.ObtenerTodos())
+        {
+            Console.WriteLine(par.Value);
+        }
+
+        Console.WriteLine("\n=== Buscar alumno ===");
+
+        Alumno encontrado = diccionario.BuscarPorClave(1);
+        if (encontrado != null)
+        {
+            Console.WriteLine(encontrado);
+        }
+        else
+        {
+            Console.WriteLine("No existe");
+        }
+
+        Alumno noExiste = diccionario.BuscarPorClave(99);
+        if (noExiste != null)
+        {
+            Console.WriteLine(noExiste);
+        }
+        else
+        {
+            Console.WriteLine("No existe");
+        }
+
+        Console.WriteLine("\n=== Eliminar alumno ===");
+        diccionario.Eliminar(2);
+        foreach (KeyValuePair<int, Alumno> par in diccionario.ObtenerTodos())
+        {
+            Console.WriteLine(par.Value);
+        }
 
     }
+
 
     //Realizar una llamada a cada método definido en CasoLinq y mostar por consola según corresponda
     public static void EjemploLinq()
     {
+        CasoLinq linq = new CasoLinq();
+        Console.WriteLine("=== Primer libro ===");
+        Console.WriteLine(linq.GetPrimero());
+
+        Console.WriteLine("\n=== Último libro ===");
+        Console.WriteLine(linq.GetUltimo());
+
+        Console.WriteLine("\n=== Total precios ===");
+        Console.WriteLine(linq.GetTotalPrecios());
+
+        Console.WriteLine("\n=== Promedio precios ===");
+        Console.WriteLine(linq.GetPromedioPrecios());
+
+        Console.WriteLine("\n=== Libros con Id mayor a 15 ===");
+        foreach (Libro l in linq.GetListById())
+        {
+            Console.WriteLine(l);
+        }
+
+        Console.WriteLine("\n=== Títulos y precios ===");
+        foreach (string s in linq.GetLibros())
+        {
+            Console.WriteLine(s);
+        }
+
+        Console.WriteLine("\n=== Libro más caro ===");
+        Console.WriteLine(linq.GetMayorPrecio());
+
+        Console.WriteLine("\n=== Libro más barato ===");
+        Console.WriteLine(linq.GetMenorPrecio());
+
+        Console.WriteLine("\n=== Libros sobre el promedio ===");
+        foreach (Libro l in linq.GetMayorPromedio())
+        {
+            Console.WriteLine(l);
+        }
+
+        Console.WriteLine("\n=== Libros ordenados por título descendente ===");
+        foreach (Libro l in linq.GetOrdenadosPorTitulo())
+        {
+            Console.WriteLine(l);
+        }
 
     }
 }
